@@ -31,6 +31,12 @@ class DBClient {
     const filesCollection = db.collection('files');
     return filesCollection.countDocuments();
   }
+
+  async collection(name) {
+    if (!this.isAlive()) return null;
+    const db = this.client.db(this.dbName);
+    return db.collection(name);
+  }
 }
 
 const dbClient = new DBClient();
